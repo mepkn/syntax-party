@@ -1,1 +1,31 @@
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 3.5rem; /* matches sticky header h-14 */
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #fff;
+  color: #111827;
+}
+
+html.dark body {
+  background-color: #030712;
+  color: #f3f4f6;
+}
+
+/* Shiki dual-theme: switch to dark palette when .dark is on <html> */
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
