@@ -1,6 +1,6 @@
 import { LANGUAGE_IDS } from '../config/languages'
 import type { LanguageId } from '../config/languages'
-import type { Feature, Section } from './types'
+import type { Section } from './types'
 
 const loaders = import.meta.glob('/content/**/*.md', {
   query: '?raw',
