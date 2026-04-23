@@ -1,7 +1,7 @@
-import { SECTIONS } from '../content/loader'
-
-console.log('SECTIONS', SECTIONS)
+import { useSelectedLanguages } from '../hooks/useSelectedLanguages'
+import ComparisonView from '../components/ComparisonView'
 
 export default function ComparePage() {
-  return <div className="p-8 text-xl font-medium">hello</div>
+  const [selected] = useSelectedLanguages()
+  return <ComparisonView languages={selected} />
 }
