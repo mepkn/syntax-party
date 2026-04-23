@@ -1,9 +1,13 @@
 @import "tailwindcss";
 
+/* Switch Tailwind's dark variant from media-query to class-based.
+   Without this, Tailwind v4 fires dark: utilities via prefers-color-scheme
+   and our .dark class toggle has no effect on Tailwind utilities. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 3.5rem; /* matches sticky header h-14 */
-  color-scheme: light;
 }
 
 html.dark {
@@ -11,16 +15,18 @@ html.dark {
 }
 
 body {
-  background-color: #fff;
+  background-color: #f3f4f6; /* neutral-100 — gives cards visual lift */
   color: #111827;
 }
 
 html.dark body {
-  background-color: #030712;
+  background-color: #0a0a0a;
   color: #f3f4f6;
 }
 
-/* Shiki dual-theme: switch to dark palette when .dark is on <html> */
+/* Shiki dual-theme: activate dark palette when .dark is on <html>.
+   Shiki writes light colors as inline style values and dark colors as CSS
+   variables (--shiki-dark / --shiki-dark-bg). These rules flip to the vars. */
 .dark .shiki,
 .dark .shiki span {
   color: var(--shiki-dark) !important;

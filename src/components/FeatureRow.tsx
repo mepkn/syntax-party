@@ -10,21 +10,21 @@ interface Props {
 
 export default function FeatureRow({ section, feature, languages }: Props) {
   return (
-    <div className="mb-8">
-      <h3 className="text-sm font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-3">
+    <div>
+      <p className="text-[11px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest mb-2">
         {feature.title}
-      </h3>
+      </p>
       {/*
-        Mobile (<640px):  flex-col  — cards stack vertically
-        Tablet (640–1024px): flex-row + overflow-x-auto — horizontal scroll with fixed card widths
-        Desktop (≥1024px): CSS grid — equal-width columns, count driven by selected languages
+        Mobile (<640px):  flex-col  — cards stack vertically, full width
+        Tablet (640–1024px): flex-row + overflow-x-auto — horizontal scroll
+        Desktop (≥1024px): CSS grid — equal-width columns
       */}
       <div
-        className="flex flex-col gap-4 sm:flex-row sm:overflow-x-auto sm:pb-1 lg:grid lg:overflow-x-visible lg:pb-0"
+        className="flex flex-col gap-3 sm:flex-row sm:overflow-x-auto sm:pb-1 lg:grid lg:overflow-x-visible lg:pb-0 items-stretch"
         style={{ gridTemplateColumns: `repeat(${languages.length}, minmax(0, 1fr))` }}
       >
         {languages.map(lang => (
-          <div key={lang} className="min-w-0 sm:min-w-[260px] sm:shrink-0 lg:min-w-0">
+          <div key={lang} className="flex flex-col sm:w-[280px] sm:shrink-0 lg:w-auto">
             <SnippetCard
               sectionId={section.id}
               featureId={feature.id}

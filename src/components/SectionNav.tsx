@@ -7,12 +7,12 @@ export default function SectionNav() {
   return (
     <nav
       aria-label="Sections"
-      className="hidden lg:flex flex-col w-52 shrink-0 sticky top-14 self-start max-h-[calc(100vh-3.5rem)] overflow-y-auto border-r border-neutral-200 dark:border-neutral-800 py-6"
+      className="hidden lg:flex flex-col w-48 shrink-0 sticky top-14 self-start max-h-[calc(100vh-3.5rem)] overflow-y-auto py-6 bg-neutral-100 dark:bg-[#0a0a0a] border-r border-neutral-200 dark:border-neutral-800/60"
     >
-      <p className="px-4 mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
+      <p className="px-5 mb-3 text-[10px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-600">
         Sections
       </p>
-      <ul className="space-y-px">
+      <ul>
         {SECTIONS.map(section => {
           const active = activeSectionId === section.id
           return (
@@ -20,10 +20,10 @@ export default function SectionNav() {
               <a
                 href={`#${section.id}`}
                 className={[
-                  'block px-4 py-1.5 text-sm border-l-2 transition-colors',
+                  'flex items-center gap-2 px-5 py-1.5 text-[13px] transition-colors border-l-2',
                   active
-                    ? 'border-sky-500 bg-sky-50 dark:bg-sky-950/40 font-medium text-sky-700 dark:text-sky-300'
-                    : 'border-transparent text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:border-neutral-300 dark:hover:border-neutral-600',
+                    ? 'border-sky-500 text-sky-600 dark:text-sky-400 font-medium bg-sky-50 dark:bg-sky-950/30'
+                    : 'border-transparent text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 hover:border-neutral-300',
                 ].join(' ')}
               >
                 {section.title}

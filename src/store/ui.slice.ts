@@ -8,8 +8,17 @@ interface UiState {
   activeSectionId: string | null
 }
 
+// Read synchronously at module load — before any React render — so the initial
+// Redux state already matches localStorage/system preference. This prevents the
+// first useEffect render from momentarily writing the wrong theme back.
+function getInitialTheme(): Theme {
+  const stored = localStorage.getItem('theme') as Theme | null
+  if (stored === 'light' || stored === 'dark') return stored
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
+
 const initialState: UiState = {
-  theme: 'light',
+  theme: getInitialTheme(),
   activeSectionId: null,
 }
 

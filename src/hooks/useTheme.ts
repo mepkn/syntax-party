@@ -1,23 +1,12 @@
 import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../store/hooks'
-import { setTheme } from '../store/ui.slice'
+import { useAppSelector } from '../store/hooks'
 
 export function useTheme() {
-  const dispatch = useAppDispatch()
   const theme = useAppSelector(s => s.ui.theme)
 
-  // One-time init: read localStorage or system preference
-  useEffect(() => {
-    const stored = localStorage.getItem('theme') as 'light' | 'dark' | null
-    if (stored === 'light' || stored === 'dark') {
-      dispatch(setTheme(stored))
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      dispatch(setTheme('dark'))
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  // Sync .dark class on <html> and persist choice
+  // Sync .dark class on <html> and persist to localStorage whenever theme changes.
+  // Initial state comes from localStorage via getInitialTheme() in ui.slice, so
+  // this effect on first render writes the already-correct value — no extra render needed.
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
     localStorage.setItem('theme', theme)
