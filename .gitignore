@@ -14,6 +14,7 @@ dist-ssr
 
 # Claude / AI agents
 .claude/
+CLAUDE.md
 
 # AI & agent tools
 .cursor/

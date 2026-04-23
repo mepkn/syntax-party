@@ -10,13 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "@shikijs/markdown-it": "^4.0.2",
     "@tailwindcss/vite": "^4.2.4",
+    "markdown-it": "^14.1.1",
+    "nuqs": "^2.8.9",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.14.2",
+    "shiki": "^4.0.2",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
