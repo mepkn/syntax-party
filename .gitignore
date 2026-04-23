@@ -1,0 +1,54 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Claude / AI agents
+.claude/
+
+# AI & agent tools
+.cursor/
+.copilot/
+.github/copilot/
+.aider/
+.aider.tags.cache.v3/
+.aider.chat.history.md
+.aider.input.history
+.continue/
+.codeium/
+.tabnine/
+.kite/
+.sourcegraph/
+.cody/
+.supermaven/
+.pieces/
+.windsurf/
+.devin/
+.sweep/
+.mentat/
+.gpt-engineer/
+.smol-developer/
+.opendevin/
+.swe-agent/
+__pycache__/
+*.py[cod]
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
