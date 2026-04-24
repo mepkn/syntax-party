@@ -24,7 +24,29 @@ function initMd(): Promise<MarkdownIt> {
   return mdPromise
 }
 
-export async function renderSnippet(source: string): Promise<string> {
+export interface RenderedSnippet {
+  codeHtml: string
+  descriptionHtml?: string
+}
+
+export async function renderSnippet(source: string): Promise<RenderedSnippet> {
   const md = await initMd()
-  return md.render(source)
+  const tokens = md.parse(source, {})
+
+  const fenceIdx = tokens.findIndex(t => t.type === 'fence')
+
+  if (fenceIdx === -1) {
+    return { codeHtml: md.render(source) }
+  }
+
+  const descriptionTokens = tokens.slice(0, fenceIdx)
+  const codeTokens = tokens.slice(fenceIdx)
+
+  const descriptionHtml = descriptionTokens.length > 0
+    ? md.renderer.render(descriptionTokens, md.options, {})
+    : undefined
+
+  const codeHtml = md.renderer.render(codeTokens, md.options, {})
+
+  return { codeHtml, descriptionHtml }
 }
