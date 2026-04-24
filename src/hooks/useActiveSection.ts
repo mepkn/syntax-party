@@ -25,7 +25,7 @@ export function useActiveSection() {
           report()
         },
         // top offset = sticky header (56px); bottom crop = 55% of viewport
-        { rootMargin: '-56px 0px -55% 0px' },
+        { rootMargin: '-60px 0px -55% 0px' },
       )
       obs.observe(el)
       return [obs]

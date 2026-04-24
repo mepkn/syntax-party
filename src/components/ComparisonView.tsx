@@ -19,7 +19,7 @@ export default function ComparisonView({ languages }: Props) {
   return (
     <div className="px-6 py-8 max-w-screen-xl mx-auto w-full">
       {SECTIONS.map(section => (
-        <section key={section.id} id={section.id} className="mb-14 scroll-mt-16">
+        <section key={section.id} id={section.id} className="mb-14">
           <div className="flex items-center gap-2.5 mb-6">
             <span className="inline-block w-1 h-5 rounded-full bg-sky-500 shrink-0" />
             <h2 className="text-lg font-bold text-neutral-800 dark:text-neutral-100 tracking-tight">
