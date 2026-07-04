@@ -1,4 +1,4 @@
-No inheritance — use struct embedding to compose. Embedded fields and methods are promoted.
+No inheritance by design — Go composes instead. Embedding promotes the inner type's fields and methods.
 
 ```go
 type Animal struct {

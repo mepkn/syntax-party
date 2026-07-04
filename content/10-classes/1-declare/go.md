@@ -1,4 +1,4 @@
-Go has no classes — a `struct` holds data and methods are attached via receivers.
+Go has no classes — a `struct` holds data, methods attach via receivers, and a constructor is just a `New*` function.
 
 ```go
 type User struct {
@@ -10,6 +10,10 @@ func (u User) Greet() string {
     return fmt.Sprintf("Hi, I'm %s", u.Name)
 }
 
-u := User{Name: "John", Age: 25}
+func NewUser(name string, age int) User {
+    return User{Name: name, Age: age}
+}
+
+u := NewUser("John", 25)
 u.Greet()
 ```
