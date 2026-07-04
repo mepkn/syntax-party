@@ -1,8 +1,8 @@
-Package-level variables are accessible across the package. Inner blocks can shadow outer names.
+Closures capture outer variables by reference — `=` mutates the enclosing scope, `:=` declares a new shadowing variable.
 
 ```go
 // Inner → Outer → Package
-// Shadowing instead of mutation
+// `=` mutates, `:=` shadows
 
 var x = "global"
 
@@ -15,12 +15,11 @@ func outer() {
     x := "enclosing"
 
     inner := func() {
-        // x = "modified by inner" ❌ not allowed (cannot access outer variable directly for reassignment intent)
-        x := "local (shadowing)" // new variable, shadows outer
-        fmt.Println(x)           // local
+        x = "modified by inner" // `=` writes to the enclosing variable
+        fmt.Println(x)          // enclosing (modified)
     }
 
     inner()
-    fmt.Println(x) // enclosing (unchanged)
+    fmt.Println(x) // enclosing (modified)
 }
 ```

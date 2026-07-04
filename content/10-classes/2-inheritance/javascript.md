@@ -1,4 +1,4 @@
-Single inheritance with `extends`. Call `super(...)` first in the subclass constructor.
+Single inheritance with `extends`. A subclass constructor must call `super(...)` before touching `this`.
 
 ```js
 class Animal {
@@ -7,6 +7,10 @@ class Animal {
 }
 
 class Dog extends Animal {
+  constructor(name, breed) {
+    super(name)                 // required before using `this`
+    this.breed = breed
+  }
   speak() { return `${this.name} barks` }
 }
 ```

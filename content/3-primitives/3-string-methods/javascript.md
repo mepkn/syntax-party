@@ -1,7 +1,7 @@
 ```js
 const s = "  Hello, World!  "
 
-s.length                    // 19
+s.length                    // 17
 s.trim()                    // "Hello, World!"
 s.toUpperCase()             // "  HELLO, WORLD!  "
 s.toLowerCase()             // "  hello, world!  "

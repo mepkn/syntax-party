@@ -5,11 +5,10 @@ import (
     "bufio"
     "fmt"
     "os"
-    "strings"
 )
 
-reader := bufio.NewReader(os.Stdin)
+scanner := bufio.NewScanner(os.Stdin)
 fmt.Print("Enter your name: ")
-name, _ := reader.ReadString('\n')
-name = strings.TrimSpace(name)
+scanner.Scan()
+name := scanner.Text()
 ```

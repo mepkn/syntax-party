@@ -3,7 +3,7 @@
 ```go
 s := "  Hello, World!  "
 
-len(s)                               // 19 (bytes)
+len(s)                               // 17 (bytes)
 strings.TrimSpace(s)                 // "Hello, World!"
 strings.ToUpper(s)                   // "  HELLO, WORLD!  "
 strings.ToLower(s)                   // "  hello, world!  "

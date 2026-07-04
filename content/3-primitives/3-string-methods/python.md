@@ -1,7 +1,7 @@
 ```python
 s = "  Hello, World!  "
 
-len(s)                      # 19
+len(s)                      # 17
 s.strip()                   # "Hello, World!"
 s.upper()                   # "  HELLO, WORLD!  "
 s.lower()                   # "  hello, world!  "

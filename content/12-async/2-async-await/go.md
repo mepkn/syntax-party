@@ -1,6 +1,7 @@
-Go has no `async`/`await`. Code reads synchronously; `go` launches a goroutine for concurrency.
+Go has no `async`/`await` — code is synchronous by default; launch a goroutine and receive from a channel to "await".
 
 ```go
+// synchronous by default — no special keyword
 user, err := loadUser(1)
 if err != nil {
     log.Println(err)
@@ -8,6 +9,11 @@ if err != nil {
 }
 fmt.Println(user)
 
-// run concurrently — fire and (optionally) forget
-go loadUser(2)
+// concurrent: `go` launches, channel receive "awaits"
+ch := make(chan User, 1)
+go func() {
+    u, _ := loadUser(2)
+    ch <- u
+}()
+user2 := <-ch
 ```

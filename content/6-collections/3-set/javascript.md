@@ -7,7 +7,7 @@ s.add("cherry")
 s.delete("banana")
 
 s1.union(s2)             // union
-s1.intersection(s2).     // intersection
+s1.intersection(s2)      // intersection
 s1.difference(s2)        // difference
 
 for (const x of s) console.log(x)

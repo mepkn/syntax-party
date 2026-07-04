@@ -1,4 +1,4 @@
-Defaults are evaluated at call time, so closures over outer state work as expected.
+Defaults are re-evaluated on every call — a mutable default like `[]` is safe here (unlike Python).
 
 ```js
 function greet(name, msg = "Hello") {

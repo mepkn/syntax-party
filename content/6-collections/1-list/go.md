@@ -9,12 +9,15 @@ xs = append(xs, "date")          // append returns a new slice
 xs = xs[:len(xs)-1]              // pop last
 xs[1:3]                          // ["banana", "cherry"]
 
-for _, x := range xs {           // No map prefer explicit loop
-    result = append(result, strings.ToUpper(x))
+var upper []string
+for _, x := range xs {           // no map — write a loop
+    upper = append(upper, strings.ToUpper(x))
 }
-for _, x := range xs {.          // No filter prefer explicit loop
+
+var long []string
+for _, x := range xs {           // no filter — write a loop
     if len(x) > 5 {
-        result = append(result, x)
+        long = append(long, x)
     }
 }
 

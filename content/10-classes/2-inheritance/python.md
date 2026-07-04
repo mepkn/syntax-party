@@ -1,4 +1,4 @@
-Multiple inheritance is allowed — Python resolves via MRO (method resolution order).
+`super()` reaches the parent. Multiple inheritance is allowed — resolved via MRO (method resolution order).
 
 ```python
 class Animal:
@@ -8,6 +8,9 @@ class Animal:
         return f"{self.name} makes a sound"
 
 class Dog(Animal):
+    def __init__(self, name, breed):
+        super().__init__(name)
+        self.breed = breed
     def speak(self):
         return f"{self.name} barks"
 ```

@@ -13,6 +13,6 @@ var u User
 json.Unmarshal([]byte(`{"name":"John","age":25}`), &u)
 
 // encode
-data, _     := json.Marshal(u)
-pretty, _   := json.MarshalIndent(u, "", "  ")
+data, _ := json.Marshal(u)
+pretty, _ := json.MarshalIndent(u, "", "  ")
 ```
