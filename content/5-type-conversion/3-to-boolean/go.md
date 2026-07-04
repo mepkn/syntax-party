@@ -1,5 +1,7 @@
-Go has no truthiness — compare explicitly.
+Go has no truthiness — write the comparison you mean.
 
 ```go
-// no truthy/falsy — must use explicit comparison
+ok := len(s) > 0        // non-empty string
+positive := n != 0      // non-zero number
+exists := p != nil      // non-nil pointer
 ```

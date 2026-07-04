@@ -1,4 +1,4 @@
-No fallthrough — each case breaks automatically.
+`match` requires Python 3.10+. No fallthrough; `|` stacks patterns.
 
 ```python
 match day:

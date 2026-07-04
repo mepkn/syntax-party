@@ -4,5 +4,6 @@ JavaScript has a single `number` type (64-bit float). `BigInt` handles integers 
 let integer    = 42
 let float      = 3.14
 let scientific = 1.5e10
-// No native complex numbers
+let big        = 9007199254740993n   // BigInt literal
+// no native complex numbers
 ```

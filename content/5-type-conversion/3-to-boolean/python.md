@@ -1,15 +1,8 @@
-Falsy values: `None`, `False`, `0`, `0.0`, `""`, `[]`, `()`, `{}`, `set()`. Everything else is truthy.
+Falsy: `None`, `False`, `0`, `0.0`, `""`, and empty containers (`[]`, `()`, `{}`, `set()`). Everything else is truthy.
 
 ```python
-# falsy: False, 0, "", [], (), {}, set(), None
-# truthy: everything else
-
-bool(False)   # False
 bool(0)       # False
 bool("")      # False
-bool([])      # False — empty list is falsy (unlike JS)
-bool(())      # False — empty tuple is falsy
-bool({})      # False — empty dict is falsy (unlike JS)
-bool(set())   # False — empty set is falsy
-bool(None)    # False
+bool("hi")    # True
+bool([])      # False — empty containers are falsy (unlike JS)
 ```

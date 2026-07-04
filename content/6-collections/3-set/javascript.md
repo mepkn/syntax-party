@@ -1,3 +1,5 @@
+`union` / `intersection` / `difference` are recent additions (ES2025) — supported in all modern runtimes.
+
 ```js
 const s = new Set(["apple", "banana", "apple"])
 

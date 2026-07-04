@@ -14,7 +14,7 @@ var sl []int             // nil (slice) — len=0, cap=0, usable
 var m  map[string]int    // nil (map) — read ok, write panic
 var ch chan int          // nil (channel)
 var fn func()            // nil (function)
-var it interface{}       // nil (interface)
+var it any               // nil (interface)
 
 if p == nil {
     fmt.Println("pointer is nil")

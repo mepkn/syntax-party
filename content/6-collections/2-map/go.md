@@ -6,29 +6,15 @@ user := map[string]any{
     "age":  25,
 }
 
-user["name"]                // "John"
-v, ok := user["age"]        // 25 (ok == false when absent)
-user["email"] = "a@b.c"     // add
-delete(user, "age")         // remove
+user["name"]                       // "John"
+v, ok := user["age"]               // ok == false when absent
+user["email"] = "a@b.c"            // add
+delete(user, "age")                // remove
 
-var keys []string
-for k := range user {
-    keys = append(keys, k)
-}
-var values []interface{}
-for _, v := range user {
-    values = append(values, v)
-}
-type Pair struct {
-    Key   string
-    Value interface{}
-}
-var entries []Pair
-for k, v := range user {
-    entries = append(entries, Pair{k, v})
-}
+slices.Collect(maps.Keys(user))    // keys   (Go 1.23+)
+slices.Collect(maps.Values(user))  // values
 
-for k, v := range user {
+for k, v := range user {           // iteration order is randomized
     fmt.Println(k, v)
 }
 ```

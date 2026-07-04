@@ -1,4 +1,4 @@
-`const` enforces immutability at compile time; only primitive types allowed.
+`const` is evaluated at compile time — only numbers, strings, and booleans are allowed.
 
 ```go
 const PI = 3.14159

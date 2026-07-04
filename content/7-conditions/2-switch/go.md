@@ -19,6 +19,4 @@ case age >= 13:
 default:
     fmt.Println("child")
 }
-
-
 ```

@@ -5,6 +5,10 @@ for i := 0; i < 5; i++ {
     fmt.Println(i)
 }
 
+for i := range 5 { // Go 1.22+
+    fmt.Println(i)
+}
+
 for _, x := range []string{"a", "b"} {
     fmt.Println(x)
 }
