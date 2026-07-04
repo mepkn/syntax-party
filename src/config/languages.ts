@@ -1,4 +1,4 @@
-export const LANGUAGE_IDS = ['javascript', 'python', 'go', 'ruby', 'rust'] as const
+export const LANGUAGE_IDS = ['javascript', 'python', 'go', 'ruby', 'rust', 'kotlin', 'swift'] as const
 export type LanguageId = typeof LANGUAGE_IDS[number]
 
 export interface Language {
@@ -56,5 +56,23 @@ export const LANGUAGES: Record<LanguageId, Language> = {
     color: '#CE422B',
     docsUrl: 'https://doc.rust-lang.org/',
     order: 5,
+  },
+  kotlin: {
+    id: 'kotlin',
+    name: 'Kotlin',
+    shikiLang: 'kotlin',
+    iconPath: '/icons/kotlin.svg',
+    color: '#7F52FF',
+    docsUrl: 'https://kotlinlang.org/docs/',
+    order: 6,
+  },
+  swift: {
+    id: 'swift',
+    name: 'Swift',
+    shikiLang: 'swift',
+    iconPath: '/icons/swift.svg',
+    color: '#F05138',
+    docsUrl: 'https://www.swift.org/documentation/',
+    order: 7,
   },
 }
