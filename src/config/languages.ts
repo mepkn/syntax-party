@@ -1,4 +1,4 @@
-export const LANGUAGE_IDS = ['javascript', 'python', 'go'] as const
+export const LANGUAGE_IDS = ['javascript', 'python', 'go', 'ruby'] as const
 export type LanguageId = typeof LANGUAGE_IDS[number]
 
 export interface Language {
@@ -38,5 +38,14 @@ export const LANGUAGES: Record<LanguageId, Language> = {
     color: '#00ADD8',
     docsUrl: 'https://go.dev/doc/',
     order: 3,
+  },
+  ruby: {
+    id: 'ruby',
+    name: 'Ruby',
+    shikiLang: 'ruby',
+    iconPath: '/icons/ruby.svg',
+    color: '#CC342D',
+    docsUrl: 'https://docs.ruby-lang.org/en/',
+    order: 4,
   },
 }
