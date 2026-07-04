@@ -2,8 +2,8 @@
 
 ```go
 name := "Alice"
-age  := 30
+age := 30
 
 greeting := fmt.Sprintf("Hello, %s! You are %d years old.", name, age)
-expr     := fmt.Sprintf("%d is four", 2+2)
+expr := fmt.Sprintf("%d is four", 2+2)
 ```

@@ -2,7 +2,7 @@
 
 ```python
 yes = True
-no  = False
+no = False
 
 # falsy: False, 0, "", empty containers, None — everything else is truthy
 ```

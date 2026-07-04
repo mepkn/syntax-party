@@ -7,7 +7,8 @@ def get_age(user)
 end
 
 # custom exception
-class ValidationError < StandardError; end
+class ValidationError < StandardError
+end
 
 raise ValidationError, "bad input"
 ```

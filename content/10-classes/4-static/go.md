@@ -3,11 +3,11 @@ No static members — use package-level constants and functions. Capitalized nam
 ```go
 package mathx
 
-const PI = 3.14
+const Pi = 3.14
 
 func Square(x int) int {
     return x * x
 }
 
-// call sites: mathx.PI, mathx.Square(5)
+// call sites: mathx.Pi, mathx.Square(5)
 ```

@@ -1,6 +1,6 @@
 ```python
-single    = 'hello'
-double    = "hello"
+single = 'hello'
+double = "hello"
 multiline = """line one
 line two"""
 ```

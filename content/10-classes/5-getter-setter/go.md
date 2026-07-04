@@ -5,6 +5,7 @@ type User struct {
     name string // lowercase = unexported
 }
 
-func (u *User) Name() string      { return u.name }
-func (u *User) SetName(v string)  { u.name = strings.TrimSpace(v) }
+func (u *User) Name() string { return u.name }
+
+func (u *User) SetName(v string) { u.name = strings.TrimSpace(v) }
 ```

@@ -9,5 +9,5 @@ b === null      // true
 a == null       // true  — both null and undefined pass loose equality
 
 // safe access
-let name = user?.name ?? "Guest"
+const name = user?.name ?? "Guest"
 ```

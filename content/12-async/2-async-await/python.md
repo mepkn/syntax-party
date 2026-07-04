@@ -3,9 +3,9 @@
 ```python
 import asyncio
 
-async def get_user(id):
+async def get_user(user_id):
     try:
-        user = await load_user(id)
+        user = await load_user(user_id)
         print(user)
     except ValueError as err:
         print(err)

@@ -11,5 +11,5 @@ xs = [1, 2, 3]
 sum_all(*xs)           # 6
 
 def configure(**kwargs):
-    print(kwargs)      # {"host": "...", "port": ...}
+    print(kwargs)      # {'host': ..., 'port': ...}
 ```

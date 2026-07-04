@@ -7,7 +7,7 @@ user["email"] = "a@b.c"    # add
 del user["age"]            # remove
 
 list(user.keys())          # ["name", "email"]
-list(user.values())        # ['John', 25]
+list(user.values())        # ["John", 25]
 list(user.items())         # [("name", "John"), ...]
 
 for k, v in user.items():

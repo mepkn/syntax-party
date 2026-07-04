@@ -2,8 +2,8 @@
 
 ```ruby
 name = "Alice"
-age  = 30
+age = 30
 
 greeting = "Hello, #{name}! You are #{age} years old."
-expr     = "#{2 + 2} is four"
+expr = "#{2 + 2} is four"
 ```

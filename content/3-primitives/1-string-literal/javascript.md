@@ -1,6 +1,6 @@
 ```js
-let single    = 'hello'
-let double    = "hello"
-let multiline = `line one
+const single = 'hello'
+const double = "hello"
+const multiline = `line one
 line two`
 ```

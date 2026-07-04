@@ -1,4 +1,4 @@
-`lambda` is expression-only — for anything multi-line, define a named function with `def`.
+`lambda` is expression-only, and PEP 8 discourages assigning one to a name — lambdas belong inline.
 
 ```python
 square = lambda x: x * x

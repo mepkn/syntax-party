@@ -1,12 +1,12 @@
 Capitalization controls visibility — `Uppercase` is exported, `lowercase` is package-private.
 
 ```go
-package math
+package mathx
 
 // exported
 func Add(a, b int) int { return a + b }
 
-const PI = 3.14
+const Pi = 3.14
 
 // package-private
 func helper() {}
