@@ -1,7 +1,4 @@
 ```python
-str(42)                 # "42"
-str(True)               # "True"
-" ".join(["a", "b"])    # "a b"
-f"{42}"                 # "42"  (f-string)
-repr(obj)               # developer-readable form
+str(42)                      # "42"
+" ".join(["1", "2", "3"])    # "1 2 3"
 ```

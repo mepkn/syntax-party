@@ -5,8 +5,8 @@ for i := 0; i < 5; i++ {
     fmt.Println(i)
 }
 
-for i, x := range []string{"a", "b"} {
-    fmt.Println(i, x)
+for _, x := range []string{"a", "b"} {
+    fmt.Println(x)
 }
 
 for k, v := range obj {

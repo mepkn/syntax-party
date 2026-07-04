@@ -6,9 +6,9 @@ s.has("apple")           // true
 s.add("cherry")
 s.delete("banana")
 
-for (const x of s) console.log(x)
+s1.union(s2)             // union
+s1.intersection(s2).     // intersection
+s1.difference(s2)        // difference
 
-// union / intersection via spread
-new Set([...s1, ...s2])
-new Set([...s1].filter(x => s2.has(x)))
+for (const x of s) console.log(x)
 ```

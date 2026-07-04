@@ -1,6 +1,6 @@
 ```go
-interpreted := "hello\nworld"   // escape sequences processed
-raw         := `C:\Users\name`  // no escape processing
-multiline   := `line one
+single := 'h' // rune
+double := "hello"
+multiline := `line one
 line two`
 ```

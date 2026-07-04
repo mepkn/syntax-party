@@ -1,16 +1,26 @@
 Package-level variables are accessible across the package. Inner blocks can shadow outer names.
 
 ```go
-var packageLevel = "package scope"
+// Inner → Outer → Package
+// Shadowing instead of mutation
 
-func myFunc() {
-    local := "function scope"
+var x = "global"
 
-    {
-        inner := "block scope"
-        _ = inner   // used to suppress "unused variable" error
+func main() {
+    outer()
+    fmt.Println(x) // global (unchanged)
+}
+
+func outer() {
+    x := "enclosing"
+
+    inner := func() {
+        // x = "modified by inner" ❌ not allowed (cannot access outer variable directly for reassignment intent)
+        x := "local (shadowing)" // new variable, shadows outer
+        fmt.Println(x)           // local
     }
 
-    _ = local
+    inner()
+    fmt.Println(x) // enclosing (unchanged)
 }
 ```

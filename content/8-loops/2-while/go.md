@@ -7,9 +7,10 @@ for i < 5 {
     i++
 }
 
-// infinite loop
+// do-while equivalent
 for {
-    if done {
+    i++
+    if i >= 10 {
         break
     }
 }

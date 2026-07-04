@@ -1,4 +1,4 @@
-`match` is structural — supports patterns, guards, and destructuring. Python 3.10+.
+No fallthrough — each case breaks automatically.
 
 ```python
 match day:

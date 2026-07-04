@@ -6,6 +6,7 @@ xs[0]                      // "apple"
 xs.push("date")            // append
 xs.pop()                   // remove & return last
 xs.slice(1, 3)             // ["banana", "cherry"]
+
 xs.map(x => x.toUpperCase())
 xs.filter(x => x.length > 5)
 

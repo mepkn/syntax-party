@@ -1,9 +1,13 @@
 Falsy values: `undefined`, `null`, `false`, `0`, `NaN`, `""`. Everything else is truthy.
 
 ```js
-Boolean(1)     // true
-Boolean(0)     // false
-Boolean("")    // false
-Boolean("x")   // true
-!!value        // shorthand for Boolean(value)
+// falsy: false, 0, "", null, undefined, NaN
+// truthy: everything else — including [], {} unlike python
+
+Boolean(false)     // false
+Boolean(0)         // false
+Boolean("")        // false
+Boolean(null)      // false
+Boolean(undefined) // false
+Boolean(NaN)       // false
 ```

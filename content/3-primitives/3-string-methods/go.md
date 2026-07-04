@@ -1,8 +1,6 @@
-String methods live in the `strings` package. `len` returns byte count, not character count.
+`len` returns byte count, not character count.
 
 ```go
-import "strings"
-
 s := "  Hello, World!  "
 
 len(s)                               // 19 (bytes)

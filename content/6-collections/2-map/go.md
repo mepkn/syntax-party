@@ -7,10 +7,26 @@ user := map[string]any{
 }
 
 user["name"]                // "John"
+v, ok := user["age"]        // 25 (ok == false when absent)
 user["email"] = "a@b.c"     // add
 delete(user, "age")         // remove
 
-v, ok := user["missing"]    // ok == false when absent
+var keys []string
+for k := range user {
+    keys = append(keys, k)
+}
+var values []interface{}
+for _, v := range user {
+    values = append(values, v)
+}
+type Pair struct {
+    Key   string
+    Value interface{}
+}
+var entries []Pair
+for k, v := range user {
+    entries = append(entries, Pair{k, v})
+}
 
 for k, v := range user {
     fmt.Println(k, v)

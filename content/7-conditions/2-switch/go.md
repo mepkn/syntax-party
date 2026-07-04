@@ -16,5 +16,9 @@ case age >= 18:
     fmt.Println("adult")
 case age >= 13:
     fmt.Println("teen")
+default:
+    fmt.Println("child")
 }
+
+
 ```

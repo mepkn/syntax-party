@@ -7,6 +7,6 @@
 10 ** 3   // 1000 (exponent)
 
 let x = 5
-x++       // post-increment
+x++       
 x += 2
 ```
