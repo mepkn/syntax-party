@@ -27,8 +27,8 @@ React 19 · TypeScript · Vite · Tailwind CSS v4 · shadcn/ui (Base UI) · Conv
 ## How it works
 
 - **Convex is the source of truth.** The tables are `sections` → `features` → `snippets`
-  (one per feature × language), plus `revisions`. `content/` holds the original markdown
-  and is only used by `npm run seed`.
+  (one per feature × language), plus `revisions`. Everything is edited on the site; there
+  are no content files in the repo.
 - **Small reads.** `catalog:outline` (titles only) and `snippets:forLanguage` (one
   subscription per selected language) are separate queries. A code edit therefore only
   re-sends that one language, and adding a language column fetches only that language.
@@ -56,7 +56,7 @@ with SQLite. You don't need a Convex account. Requires Node 22.18+ (`.nvmrc` pin
 ```bash
 npm install
 npx convex dev            # choose "start without an account" (local). Keep it running.
-npm run setup:auth && npx convex env set SITE_URL http://localhost:5173 && npx convex env set EDITOR_EMAILS you@example.com && npm run seed
+npm run setup:auth && npx convex env set SITE_URL http://localhost:5173 && npx convex env set EDITOR_EMAILS you@example.com
 npm run dev               # second terminal → http://localhost:5173
 ```
 
@@ -69,11 +69,18 @@ For non-interactive runs (CI or agents), use `CONVEX_AGENT_MODE=anonymous npx co
 2. Click the sign-in icon at the top right, choose **"First time? Create your editor
    account"**, and enter that email and a password of at least 8 characters.
 
-### Seeding
+### Content for local development
 
-`npm run seed` imports `content/<N>-<section>/<M>-<feature>/<language>.md`. Folder numbers
-set the order. Prose before the code fence becomes the note. It's idempotent: anything
-already in the database, including edits made on the site, is left alone.
+A new local deployment starts empty. To work with the real content, copy production into it
+(this replaces everything in the local deployment, editor accounts included):
+
+```bash
+CONVEX_DEPLOY_KEY=<key from .env.prod.local> npx convex export --path prod.zip
+npx convex import --replace-all prod.zip    # with `npx convex dev` running locally
+rm prod.zip
+```
+
+The same export is also a full backup of the site.
 
 ## Scripts
 
@@ -83,10 +90,9 @@ already in the database, including edits made on the site, is left alone.
 | `npx convex dev` | Local Convex backend and function hot-reload |
 | `npm run build` | Typecheck and production build |
 | `npm run typecheck` | App and `convex/` typecheck |
-| `npm run seed` | Import `content/` (pass `-- --prod` for production) |
 | `npm run setup:auth` | Generate and set `JWT_PRIVATE_KEY` + `JWKS` |
 | `npm run lint` | ESLint |
-| `npm test` | Vitest: permissions, saving, conflicts, history, outline editing, content parsing |
+| `npm test` | Vitest: permissions, saving, conflicts, history, outline editing |
 | `npm run check` | Typecheck, lint and tests |
 | `npm run deploy` | Deploys the backend, builds and uploads the site |
 | `npm run deploy:dry` | Same checks, but only previews the deploy and upload |
@@ -108,8 +114,7 @@ One-time setup:
    npx convex env set --prod SITE_URL https://syntax-party.pknspace.com
    npx convex env set --prod EDITOR_EMAILS you@example.com
    ```
-4. Deploy once (below), then seed production with `npm run seed -- --prod` and create your
-   editor account on the site.
+4. Deploy once (below), then create your editor account at `/edit`.
 
 Deploy:
 
