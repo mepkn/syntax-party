@@ -24,30 +24,6 @@ Live: https://syntax-party.pknspace.com
 React 19 · TypeScript · Vite · Tailwind CSS v4 · shadcn/ui (Base UI) · Convex ·
 `@convex-dev/auth` (Password provider) · Shiki (in the browser) · CodeMirror 6 · Vitest.
 
-## How it works
-
-- **Convex is the source of truth.** The tables are `sections` → `features` → `snippets`
-  (one per feature × language), plus `revisions`. Everything is edited on the site; there
-  are no content files in the repo.
-- **Small reads.** `catalog:outline` (titles only) and `snippets:forLanguage` (one
-  subscription per selected language) are separate queries. A code edit therefore only
-  re-sends that one language, and adding a language column fetches only that language.
-- **Highlighting happens in the browser.** Convex stores only the code. The browser loads
-  Shiki's core, the JavaScript regex engine, and only the grammars on screen, all lazily.
-  Code shows unstyled first, then gets colours. Ruby's grammar is the heaviest (about
-  170 KB gzipped) because it embeds other languages, and it loads only when Ruby is selected.
-- **History.** Every save adds a revision, and only the latest 20 per snippet are kept. The
-  first edit of an imported snippet also stores the original, so it can be restored.
-  Restoring a version creates a new revision, so a restore can be undone too.
-- **Conflicts.** The editor sends the `updatedAt` it started from. If someone saved in
-  between, the save is refused and the editor offers "Overwrite" or "Discard mine".
-- **Security.** Sign-up and sign-in are rejected for emails not in `ALLOWED_EMAILS`, and
-  every write calls `requireEditor(ctx)`. Removing an email from the list removes the
-  editing UI and makes every write throw for that user.
-- **Scroll spy** (`src/hooks/use-scroll-spy.ts`) uses one IntersectionObserver and no
-  scroll listeners. It is rebuilt whenever the outline changes, so content that loads or is
-  edited later is still tracked.
-
 ## Development
 
 Development uses a **Convex local deployment**: the open-source backend runs on your machine
@@ -123,7 +99,31 @@ npm run deploy:dry   # checks, then preview the backend push and the upload
 npm run deploy       # checks, deploy convex/, build with the production URL, upload
 ```
 
-## Free-plan notes
+## How it works
+
+- **Convex is the source of truth.** The tables are `sections` → `features` → `snippets`
+  (one per feature × language), plus `revisions`. Everything is edited on the site; there
+  are no content files in the repo.
+- **Small reads.** `catalog:outline` (titles only) and `snippets:forLanguage` (one
+  subscription per selected language) are separate queries. A code edit therefore only
+  re-sends that one language, and adding a language column fetches only that language.
+- **Highlighting happens in the browser.** Convex stores only the code. The browser loads
+  Shiki's core, the JavaScript regex engine, and only the grammars on screen, all lazily.
+  Code shows unstyled first, then gets colours. Ruby's grammar is the heaviest (about
+  170 KB gzipped) because it embeds other languages, and it loads only when Ruby is selected.
+- **History.** Every save adds a revision, and only the latest 20 per snippet are kept. The
+  first edit of an imported snippet also stores the original, so it can be restored.
+  Restoring a version creates a new revision, so a restore can be undone too.
+- **Conflicts.** The editor sends the `updatedAt` it started from. If someone saved in
+  between, the save is refused and the editor offers "Overwrite" or "Discard mine".
+- **Security.** Sign-up and sign-in are rejected for emails not in `ALLOWED_EMAILS`, and
+  every write calls `requireEditor(ctx)`. Removing an email from the list removes the
+  editing UI and makes every write throw for that user.
+- **Scroll spy** (`src/hooks/use-scroll-spy.ts`) uses one IntersectionObserver and no
+  scroll listeners. It is rebuilt whenever the outline changes, so content that loads or is
+  edited later is still tracked.
+
+### Free-plan notes
 
 - Reads are split by language and the outline is cached separately, so database bandwidth
   stays low.
