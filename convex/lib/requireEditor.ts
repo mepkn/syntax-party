@@ -5,7 +5,7 @@ import type { Doc } from "../_generated/dataModel";
 import { isEditorEmail } from "./editors";
 
 /**
- * Throws unless the caller is signed in AND their email is in EDITOR_EMAILS.
+ * Throws unless the caller is signed in AND their email is in ALLOWED_EMAILS.
  * Every editing query/mutation must call this first.
  * (MutationCtx extends QueryCtx, so this works for both.)
  */

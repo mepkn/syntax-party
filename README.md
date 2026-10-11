@@ -41,7 +41,7 @@ React 19 · TypeScript · Vite · Tailwind CSS v4 · shadcn/ui (Base UI) · Conv
   Restoring a version creates a new revision, so a restore can be undone too.
 - **Conflicts.** The editor sends the `updatedAt` it started from. If someone saved in
   between, the save is refused and the editor offers "Overwrite" or "Discard mine".
-- **Security.** Sign-up and sign-in are rejected for emails not in `EDITOR_EMAILS`, and
+- **Security.** Sign-up and sign-in are rejected for emails not in `ALLOWED_EMAILS`, and
   every write calls `requireEditor(ctx)`. Removing an email from the list removes the
   editing UI and makes every write throw for that user.
 - **Scroll spy** (`src/hooks/use-scroll-spy.ts`) uses one IntersectionObserver and no
@@ -56,7 +56,7 @@ with SQLite. You don't need a Convex account. Requires Node 22.18+ (`.nvmrc` pin
 ```bash
 npm install
 npx convex dev            # choose "start without an account" (local). Keep it running.
-npm run setup:auth && npx convex env set SITE_URL http://localhost:5173 && npx convex env set EDITOR_EMAILS you@example.com
+npm run setup:auth && npx convex env set SITE_URL http://localhost:5173 && npx convex env set ALLOWED_EMAILS you@example.com
 npm run dev               # second terminal → http://localhost:5173
 ```
 
@@ -64,7 +64,7 @@ For non-interactive runs (CI or agents), use `CONVEX_AGENT_MODE=anonymous npx co
 
 ### Becoming an editor
 
-1. Add your email to the allowlist: `npx convex env set EDITOR_EMAILS you@example.com`
+1. Add your email to the allowlist: `npx convex env set ALLOWED_EMAILS you@example.com`
    (comma-separate multiple editors).
 2. Click the sign-in icon at the top right, choose **"First time? Create your editor
    account"**, and enter that email and a password of at least 8 characters.
@@ -112,7 +112,7 @@ One-time setup:
    ```bash
    node scripts/setup-auth-keys.ts --apply --prod
    npx convex env set --prod SITE_URL https://syntax-party.pknspace.com
-   npx convex env set --prod EDITOR_EMAILS you@example.com
+   npx convex env set --prod ALLOWED_EMAILS you@example.com
    ```
 4. Deploy once (below), then create your editor account at `/edit`.
 
