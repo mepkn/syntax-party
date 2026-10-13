@@ -30,14 +30,20 @@ Development uses a **Convex local deployment**: the open-source backend runs on 
 with SQLite. You don't need a Convex account. Requires Node 22.18+ (`.nvmrc` pins 22).
 
 ```bash
+cd backend
 npm install
-npm run web:install          # the web app in web/ has its own install
-npx convex dev            # choose "start without an account" (local). Keep it running.
-npm run setup:auth && npx convex env set SITE_URL http://localhost:5173 && npx convex env set ALLOWED_EMAILS you@example.com
-npm run dev               # second terminal → http://localhost:5173
+npm run dev                  # choose "start without an account" (local). Keep it running.
+npm run setup:auth           # first time only: auth signing keys
+npx convex env set SITE_URL http://localhost:5173
+npx convex env set ALLOWED_EMAILS you@example.com
+
+cd ../web
+npm install
+npm run dev                  # second terminal → http://localhost:5173
 ```
 
-For non-interactive runs (CI or agents), use `CONVEX_AGENT_MODE=anonymous npx convex dev`.
+For non-interactive runs (CI or agents), use `CONVEX_AGENT_MODE=anonymous npx convex dev` in
+`backend/`.
 
 ### Becoming an editor
 
@@ -49,10 +55,10 @@ For non-interactive runs (CI or agents), use `CONVEX_AGENT_MODE=anonymous npx co
 ### Content for local development
 
 A new local deployment starts empty. To work with the real content, copy production into it
-(this replaces everything in the local deployment, editor accounts included):
+(this replaces everything in the local deployment, editor accounts included). In `backend/`:
 
 ```bash
-CONVEX_DEPLOY_KEY=<key from .env.prod.local> npx convex export --path prod.zip
+CONVEX_DEPLOY_KEY=<key from backend/.env.prod.local> npx convex export --path prod.zip
 npx convex import --replace-all prod.zip    # with `npx convex dev` running locally
 rm prod.zip
 ```
@@ -63,30 +69,33 @@ The same export is also a full backup of the site.
 
 | Command | What it does |
 |---|---|
-| `npm run dev` | Vite dev server (http://localhost:5173) |
-| `npx convex dev` | Local Convex backend and function hot-reload |
-| `npm run build` | Typecheck and production build into `web/dist/` |
-| `npm run web:install` | Install the web app's dependencies |
-| `npm run typecheck` | `convex/` typecheck (the web app's runs in `check`) |
-| `npm run setup:auth` | Generate and set `JWT_PRIVATE_KEY` + `JWKS` |
-| `npm run lint` | ESLint |
-| `npm test` | Convex function tests (Vitest): permissions, saving, conflicts, history, outline editing; the web app's run in `check` |
-| `npm run check` | Typecheck, lint and tests for the backend, then the web app |
-| `npm run deploy` | Deploys the backend, builds and uploads the site |
-| `npm run deploy:dry` | Same checks, but only previews the deploy and upload |
+| `backend/`: `npm run dev` | Local Convex backend; pushes `convex/` on every change |
+| `backend/`: `npm run deploy` | Push the functions to production (`scripts/deploy.sh` does this for you) |
+| `backend/`: `npm run setup:auth` | Generate and set `JWT_PRIVATE_KEY` + `JWKS` |
+| `backend/`: `npm test` | Convex function tests (Vitest): permissions, saving, conflicts, history, outline editing |
+| `backend/`: `npm run check` | Typecheck, lint and tests for `convex/` and `scripts/` |
+| `web/`: `npm run dev` | Vite dev server (http://localhost:5173) |
+| `web/`: `npm run build` | Typecheck and production build into `web/dist/` |
+| `web/`: `npm run check` | Typecheck, lint and tests |
+| `scripts/check.sh` | Both checks; run before committing |
+| `scripts/deploy.sh` | Checks, deploys the backend, builds and uploads the site |
+| `DRY_RUN=1 scripts/deploy.sh` | Same checks, but only previews the deploy and upload |
 
 ## Deployment
 
 Production runs on a Convex cloud deployment (backend) plus a VPS where Caddy serves the
-static `web/dist/` (no restart needed). `npm run deploy` does both.
+static `web/dist/` (no restart needed). `scripts/deploy.sh` does both.
 
 One-time setup:
 
-1. Create a Convex cloud project and generate a **production deploy key** in the dashboard.
-2. Copy the production section of `.env.example` into `.env.prod.local` (git-ignored) and
-   fill in `CONVEX_DEPLOY_KEY`, `DEPLOY_HOST`, `DEPLOY_PORT` and `DEPLOY_DIR`. You also need
-   SSH key access to the server.
-3. Set the Convex-side env vars on the **production** deployment:
+1. Create a Convex cloud project and a **production deploy key**. In `backend/`:
+   `npx convex deployment token create syntax-party-deploy --deployment
+   praveen-nirmalkar:syntax-party:production --save-env .env.prod.local`.
+2. Each part keeps its production settings in its own `.env.prod.local` (git-ignored; see the
+   `.env.example` next to each): `backend/.env.prod.local` has `CONVEX_DEPLOY_KEY`, and
+   `web/.env.prod.local` has `DEPLOY_HOST`, `DEPLOY_PORT` and `DEPLOY_DIR`. You also need SSH
+   key access to the server.
+3. Set the Convex-side env vars on the **production** deployment, in `backend/`:
    ```bash
    node scripts/setup-auth-keys.ts --apply --prod
    npx convex env set --prod SITE_URL https://syntax-party.pknspace.com
@@ -97,8 +106,8 @@ One-time setup:
 Deploy:
 
 ```bash
-npm run deploy:dry   # checks, then preview the backend push and the upload
-npm run deploy       # checks, deploy convex/, build with the production URL, upload
+DRY_RUN=1 scripts/deploy.sh   # checks, then preview the backend push and the upload
+scripts/deploy.sh             # checks, deploy backend/convex/, build with the production URL, upload
 ```
 
 ## How it works
