@@ -31,6 +31,7 @@ with SQLite. You don't need a Convex account. Requires Node 22.18+ (`.nvmrc` pin
 
 ```bash
 npm install
+npm run web:install          # the web app in web/ has its own install
 npx convex dev            # choose "start without an account" (local). Keep it running.
 npm run setup:auth && npx convex env set SITE_URL http://localhost:5173 && npx convex env set ALLOWED_EMAILS you@example.com
 npm run dev               # second terminal → http://localhost:5173
@@ -64,19 +65,20 @@ The same export is also a full backup of the site.
 |---|---|
 | `npm run dev` | Vite dev server (http://localhost:5173) |
 | `npx convex dev` | Local Convex backend and function hot-reload |
-| `npm run build` | Typecheck and production build |
-| `npm run typecheck` | App and `convex/` typecheck |
+| `npm run build` | Typecheck and production build into `web/dist/` |
+| `npm run web:install` | Install the web app's dependencies |
+| `npm run typecheck` | `convex/` typecheck (the web app's runs in `check`) |
 | `npm run setup:auth` | Generate and set `JWT_PRIVATE_KEY` + `JWKS` |
 | `npm run lint` | ESLint |
-| `npm test` | Vitest: permissions, saving, conflicts, history, outline editing |
-| `npm run check` | Typecheck, lint and tests |
+| `npm test` | Convex function tests (Vitest): permissions, saving, conflicts, history, outline editing; the web app's run in `check` |
+| `npm run check` | Typecheck, lint and tests for the backend, then the web app |
 | `npm run deploy` | Deploys the backend, builds and uploads the site |
 | `npm run deploy:dry` | Same checks, but only previews the deploy and upload |
 
 ## Deployment
 
 Production runs on a Convex cloud deployment (backend) plus a VPS where Caddy serves the
-static `dist/` (no restart needed). `npm run deploy` does both.
+static `web/dist/` (no restart needed). `npm run deploy` does both.
 
 One-time setup:
 
@@ -119,7 +121,7 @@ npm run deploy       # checks, deploy convex/, build with the production URL, up
 - **Security.** Sign-up and sign-in are rejected for emails not in `ALLOWED_EMAILS`, and
   every write calls `requireEditor(ctx)`. Removing an email from the list removes the
   editing UI and makes every write throw for that user.
-- **Scroll spy** (`src/hooks/use-scroll-spy.ts`) uses one IntersectionObserver and no
+- **Scroll spy** (`web/src/hooks/use-scroll-spy.ts`) uses one IntersectionObserver and no
   scroll listeners. It is rebuilt whenever the outline changes, so content that loads or is
   edited later is still tracked.
 

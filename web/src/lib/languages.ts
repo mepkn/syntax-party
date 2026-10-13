@@ -1,4 +1,4 @@
-import { LANGUAGE_IDS, type LanguageId } from "../../convex/lib/languages";
+import { LANGUAGE_IDS, type LanguageId } from "@convex/lib/languages";
 
 export { LANGUAGE_IDS, type LanguageId };
 

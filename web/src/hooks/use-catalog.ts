@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useQueries, useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
-import type { Id } from "../../convex/_generated/dataModel";
+import { api } from "@convex/_generated/api";
+import type { Id } from "@convex/_generated/dataModel";
 import type { LanguageId } from "@/lib/languages";
 import type { Snippet } from "@/lib/types";
 

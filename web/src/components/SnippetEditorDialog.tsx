@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import type { Id } from "../../convex/_generated/dataModel";
+import type { Id } from "@convex/_generated/dataModel";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { LanguageId } from "@/lib/languages";
 import type { Snippet } from "@/lib/types";

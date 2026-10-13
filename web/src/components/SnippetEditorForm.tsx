@@ -3,7 +3,7 @@ import { useMutation } from "convex/react";
 import type { Extension } from "@codemirror/state";
 import { Loader2Icon } from "lucide-react";
 import { toast } from "sonner";
-import { api } from "../../convex/_generated/api";
+import { api } from "@convex/_generated/api";
 import { Button } from "@/components/ui/button";
 import { DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
